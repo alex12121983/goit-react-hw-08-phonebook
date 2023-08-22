@@ -84,9 +84,6 @@ const contactsSlice = createSlice({
       })
       .addCase(deleteContactThunk.fulfilled, (state, action) => {
         state.isLoading = false;
-        // state.contacts = state.contacts.filter(
-        //   contact => contact.id !== action.payload.id
-        // );
         const indexDeletedContact = state.contacts.findIndex(
           contact => contact.id === action.payload.id
         );
@@ -98,8 +95,19 @@ const contactsSlice = createSlice({
       }),
 });
 
-export const selectUserContacts = state => state.contacts.contacts;
-export const selectContactsIsLoading = state => state.contacts.isLoading;
-export const selectContactsError = state => state.contacts.error;
+// export const selectUserContacts = state => state.contacts.contacts;
+// export const selectContactsIsLoading = state => state.contacts.isLoading;
+// export const selectContactsError = state => state.contacts.error;
+
+// export const selectFilter = state => state.filter;
+
+// export const selectFilteredContact = createSelector(
+//   [selectUserContacts, selectFilter],
+//   (contacts, filter) => {
+//     return contacts.filter(contact =>
+//       contact.name.toLowerCase().includes(filter.toLowerCase())
+//     );
+//   }
+// );
 
 export const contactsReducer = contactsSlice.reducer;

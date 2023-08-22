@@ -28,8 +28,8 @@ const LoginPage = () => {
   if (authenticated) return <Navigate to="/contacts" />;
 
   return (
-      
-      <form onSubmit={handleSubmit} className={css.login}>
+    <section className={css.login}>
+      <form onSubmit={handleSubmit} className={css.login_form}>
         <h1>Login Into Your Account</h1>
         <div className={css.login_input}>
           <label className={css.form_label}>
@@ -60,6 +60,7 @@ const LoginPage = () => {
           Sign In
         </button>
       </form>
+    </section>
   );
 };
 

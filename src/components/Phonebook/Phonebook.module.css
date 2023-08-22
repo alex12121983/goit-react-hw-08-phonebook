@@ -1,5 +1,6 @@
 .phonebook {
     width: 50%;
+    min-width: 300px;
     margin-left: auto;
     margin-right: auto;
     display: flex;

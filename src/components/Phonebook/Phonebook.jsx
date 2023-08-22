@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { addContactThunk, selectUserContacts } from 'redux/contactsReducer';
+import { addContactThunk } from 'redux/contactsReducer';
+import { selectUserContacts } from 'redux/selectors';
 
 import css from './Phonebook.module.css'
 
@@ -32,7 +33,8 @@ const Phonebook = () => {
         const name = form.elements.contactName.value;
         const number = form.elements.contactNumber.value;
 
-        if (contacts.some(contact => contact.name === name))
+        if (contacts.some(contact => 
+            contact.name.toLowerCase() === name.toLowerCase()))
             return alert(`Contact with name ${name} already exists!`);
         
         dispatch(addContactThunk({ name, number }));

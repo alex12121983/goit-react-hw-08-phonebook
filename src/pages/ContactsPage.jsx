@@ -2,22 +2,24 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import Loader from 'components/Loader/Loader';
-import { selectAuthentificated } from 'redux/authReducer';
+import { deleteContactThunk, requestContactsThunk } from 'redux/contactsReducer';
 import {
-  deleteContactThunk,
-  requestContactsThunk,
   selectContactsError,
   selectContactsIsLoading,
-  selectUserContacts,
-} from 'redux/contactsReducer';
+  selectFilteredContact,
+} from 'redux/selectors';
+import { selectAuthentificated } from 'redux/authReducer';
+// import { selectFilteredContact } from 'redux/filterReducer';
 import Phonebook from 'components/Phonebook/Phonebook';
+import Filter from 'components/Filter/Filter';
 import css from './ContactsPage.module.css';
 
 const Contacts = () => {
   const authentificated = useSelector(selectAuthentificated);
-  const contacts = useSelector(selectUserContacts);
+  // const contacts = useSelector(selectUserContacts);
   const isLoading = useSelector(selectContactsIsLoading);
   const error = useSelector(selectContactsError);
+  const filteredContact = useSelector(selectFilteredContact);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -29,16 +31,17 @@ const Contacts = () => {
   const handleDeleteContact = contactId => {
     dispatch(deleteContactThunk(contactId));
   };
-
-  const showContacts = Array.isArray(contacts) && contacts.length > 0;
+  // const showContacts = Array.isArray(contacts) && contacts.length > 0;
+  const showContacts = Array.isArray(filteredContact) && filteredContact.length > 0;
   return (
     <div className={css.contacts}>
       <Phonebook/>
+      <Filter />
       {isLoading && <Loader />}
       {error && <p>Oops, some error occured... {error}</p>}
       <ul className={css.list_group}>
         {showContacts &&
-          contacts.map(contact => {
+          filteredContact.map(contact => {
             return (
               <li 
                 key={contact.id}

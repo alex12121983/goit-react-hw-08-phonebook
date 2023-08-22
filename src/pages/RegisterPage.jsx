@@ -29,8 +29,9 @@ const RegisterPage = () => {
 
   if (authenticated) return <Navigate to="/contacts" />;
 
-  return (   
-    <form className={css.register} onSubmit={handleSubmit}>
+  return (  
+  <section className={css.register}> 
+    <form className={css.register_form} onSubmit={handleSubmit}>
       <h1>Register Your Account</h1>
       <div className={css.register_input}>
         <label className={css.form_label}>
@@ -72,6 +73,7 @@ const RegisterPage = () => {
             Sign Up
         </button>
     </form>
+  </section>
   );
 };
 
