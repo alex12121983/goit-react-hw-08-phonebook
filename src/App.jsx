@@ -4,14 +4,14 @@ import Loader from './components/Loader/Loader';
 import css from 'App.module.css'
 
 import { useDispatch, useSelector } from 'react-redux';
-import { selectAuthentificated, selectToken } from 'redux/authReducer';
-import { logoutUserThunk, refreshUserThunk } from 'redux/operations';
+import { selectAuthentificated, selectToken } from 'redux/auth/selectors';
+import { logoutUserThunk, refreshUserThunk } from 'redux/auth/operations';
 import PrivateRoute from 'components/PrivateRoute/PrivateRoute';
 
-const HomePage = lazy(() => import('pages/HomePage'));
-const ContactsPage = lazy(() => import('pages/ContactsPage'));
-const RegisterPage = lazy(() => import('pages/RegisterPage'));
-const LoginPage = lazy(() => import('pages/LoginPage'));
+const HomePage = lazy(() => import('pages/HomePage/HomePage'));
+const ContactsPage = lazy(() => import('pages/ContactsPage/ContactsPage'));
+const RegisterPage = lazy(() => import('pages/RegisterPage/RegisterPage'));
+const LoginPage = lazy(() => import('pages/LoginPage/LoginPage'));
 
 export const App = () => {
   const dispatch = useDispatch();

@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { addContactThunk } from 'redux/contactsReducer';
-import { selectUserContacts } from 'redux/selectors';
+import { addContactThunk } from 'redux/contacts/operations';
+import { selectUserContacts } from 'redux/contacts/selectors';
 
 import css from './Phonebook.module.css'
 
@@ -27,11 +27,6 @@ const Phonebook = () => {
     }
     const handleSubmit = evt => {
         evt.preventDefault();
-
-        const form = evt.currentTarget;
-
-        const name = form.elements.contactName.value;
-        const number = form.elements.contactNumber.value;
 
         if (contacts.some(contact => 
             contact.name.toLowerCase() === name.toLowerCase()))

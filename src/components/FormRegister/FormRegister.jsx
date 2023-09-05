@@ -1,19 +1,14 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Navigate } from 'react-router-dom';
-import { selectAuthentificated } from 'redux/authReducer';
-import { registerUserThunk } from 'redux/operations';
-import css from './RegisterPage.module.css';
+import { useDispatch } from 'react-redux';
+import { registerUserThunk } from 'redux/auth/operations';
+import css from './FormRegister.module.css';
 
-const RegisterPage = () => {
+const FormRegister = () => {
   const dispatch = useDispatch();
-  const authenticated = useSelector(selectAuthentificated);
 
   const handleSubmit = event => {
     event.preventDefault();
-
     const form = event.currentTarget;
-
     const name = form.elements.userName.value;
     const email = form.elements.userEmail.value;
     const password = form.elements.userPassword.value;
@@ -27,10 +22,8 @@ const RegisterPage = () => {
     );
   };
 
-  if (authenticated) return <Navigate to="/contacts" />;
 
   return (  
-  <section className={css.register}> 
     <form className={css.register_form} onSubmit={handleSubmit}>
       <h1>Register Your Account</h1>
       <div className={css.register_input}>
@@ -73,8 +66,7 @@ const RegisterPage = () => {
             Sign Up
         </button>
     </form>
-  </section>
   );
 };
 
-export default RegisterPage;
+export default FormRegister;
